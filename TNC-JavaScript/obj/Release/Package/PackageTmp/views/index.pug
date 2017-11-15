@@ -1,0 +1,12 @@
+﻿extends layout
+
+block content
+  div.container
+    div.row
+      h1.col-sm-6= title
+    div.row
+      p.col-sm-6 Welcome to #{title}
+    div.row
+      form#uploadForm.col-sm-6(ref='uploadForm', action='/upload', method='post', encType='multipart/form-data')
+        input(type='file', name='sampleFile')
+        input(type='submit', value='Upload!')
