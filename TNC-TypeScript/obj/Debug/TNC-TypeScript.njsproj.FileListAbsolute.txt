@@ -1,3 +1,0 @@
-C:\Users\zhulian\source\repos\TNCInterface\TNC-TypeScript\obj\Debug\TNC-TypeScript.njsprojResolveAssemblyReference.cache
-C:\Users\zhulian\source\repos\TNCInterface\TNC-TypeScript\obj\Debug\TNC-TypeScript.njsproj.CoreCompileInputs.cache
-C:\Users\zhulian\source\repos\TNCInterface\TNC-TypeScript\bin\Microsoft.NodejsTools.WebRole.dll

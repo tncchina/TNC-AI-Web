@@ -1,2 +1,0 @@
-C:\Users\zhulian\source\repos\TNCInterface\TNC-JavaScript\obj\Debug\TNC-JavaScript.njsproj.CoreCompileInputs.cache
-C:\Users\zhulian\source\repos\TNCInterface\TNC-JavaScript\bin\Microsoft.NodejsTools.WebRole.dll
