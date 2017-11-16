@@ -36,7 +36,7 @@
     <Compile Include="public\javascripts\bootstrap.min.js" />
     <Compile Include="public\javascripts\npm.js" />
     <Compile Include="routes\index.js" />
-    <Compile Include="routes\upload.js">
+    <Compile Include="routes\photos.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="routes\users.js" />
@@ -66,7 +66,7 @@
     <Folder Include="views\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="views\upload.pug">
+    <Content Include="views\photos.pug">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Web.config" />

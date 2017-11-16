@@ -1,0 +1,10 @@
+﻿extends layout
+
+block content
+  p Welcome to #{title}
+  p items: #{items}
+  img(src=imgurl, alt="Mountain View")
+
+  each imgurl, i in imgurls
+    img(src=imgurl, alt="Mountain View")
+

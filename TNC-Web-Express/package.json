@@ -7,9 +7,10 @@
   },
   "description": "TNC-JavaScript",
   "author": {
-    "name": "zhulian"
+    "name": "TNC-China-AI"
   },
   "dependencies": {
+    "azure-storage": "^2.6.0",
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.7",
     "cookie-parser": "^1.4.0",
