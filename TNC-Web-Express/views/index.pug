@@ -6,7 +6,7 @@ block content
       h1.col-sm-6= title
     div.row
       p.col-sm-6 Welcome to #{title}
-    form(name="form1",method="post",action="http://www.tncchina.com/api/photo/upload", enctype="multipart/form-data")
+    form(name="form1",method="post",action="http://localhost:50224/api/photo/upload", enctype="multipart/form-data")
       div
         label Brows File
           input(name="myFile", type="file")

@@ -16,6 +16,7 @@ namespace TNC_Web_API.Controllers
         [Route("upload")]
         public HttpResponseMessage Upload()
         {
+            // Refer example from here: http://www.c-sharpcorner.com/UploadFile/2b481f/uploading-a-file-in-Asp-Net-web-api/
             HttpResponseMessage result = null;
             var httpRequest = HttpContext.Current.Request;
             if (httpRequest.Files.Count > 0)
@@ -24,10 +25,10 @@ namespace TNC_Web_API.Controllers
                 foreach (string file in httpRequest.Files)
                 {
                     var postedFile = httpRequest.Files[file];
-                    var filePath = HttpContext.Current.Server.MapPath("~/" + postedFile.FileName);
-                    postedFile.SaveAs(filePath);
+                   // var filePath = HttpContext.Current.Server.MapPath(postedFile.FileName);
+                    postedFile.SaveAs(postedFile.FileName);
 
-                    docfiles.Add(filePath);
+                    docfiles.Add(postedFile.FileName);
                 }
                 result = Request.CreateResponse(HttpStatusCode.Created, docfiles);
             }
