@@ -25,10 +25,11 @@ namespace TNC_Web_API.Controllers
                 foreach (string file in httpRequest.Files)
                 {
                     var postedFile = httpRequest.Files[file];
-                   // var filePath = HttpContext.Current.Server.MapPath(postedFile.FileName);
-                    postedFile.SaveAs(postedFile.FileName);
+                    // var filePath = HttpContext.Current.Server.MapPath(postedFile.FileName);
+                    string filepath = "D:/Projects/TNC-AI-Web/TNC-Web-API/photos/" + postedFile.FileName.Split('\\').Last();
+                    postedFile.SaveAs(filepath);
 
-                    docfiles.Add(postedFile.FileName);
+                    docfiles.Add(filepath);
                 }
                 result = Request.CreateResponse(HttpStatusCode.Created, docfiles);
             }
