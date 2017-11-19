@@ -10,6 +10,7 @@ using System.Web;
 
 namespace TNC_Web_API.Controllers
 {
+    [RoutePrefix("api/products")]
     public class ProductsController : ApiController
     {
         Product[] products = new Product[]
@@ -20,12 +21,14 @@ namespace TNC_Web_API.Controllers
         };
 
         [HttpGet]
+        [Route("")]
         public IEnumerable<Product> GetAllProducts()
         {
             return products;
         }
 
         [HttpGet]
+        [Route("{id}")]
         public IHttpActionResult GetProduct(int id)
         {
             var product = products.FirstOrDefault((p) => p.Id == id);

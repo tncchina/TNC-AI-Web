@@ -8,10 +8,12 @@ using System.Web.Http;
 
 namespace TNC_Web_API.Controllers
 {
+    [RoutePrefix("api/photo")]
     public class PhotoController : ApiController
     {
 
         [HttpPost]
+        [Route("upload")]
         public HttpResponseMessage Upload()
         {
             HttpResponseMessage result = null;
