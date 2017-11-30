@@ -4,7 +4,12 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default class NotFoundPage extends React.Component {
+
+
   render() {
+
+    console.log("Output from Notfound:\n");
+
     return (
       <div className="not-found">
         <h1>404</h1>

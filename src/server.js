@@ -8,6 +8,8 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from './routes';
 import NotFoundPage from './components/NotFoundPage';
+import corsPrefetch from 'cors-prefetch-middleware';
+import imagesUpload from 'images-upload-middleware';
 
 // initialize the server and configure support for ejs templates
 const app = new Express();
@@ -17,6 +19,13 @@ app.set('views', path.join(__dirname, 'views'));
 
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
+app.use(corsPrefetch);
+
+app.post('/multiple', imagesUpload(
+  './server/static/multipleFiles',
+  'http://localhost:3000/static/multipleFiles',
+  true
+));
 
 // universal routing and rendering
 app.get('*', (req, res) => {
@@ -36,12 +45,17 @@ app.get('*', (req, res) => {
 
       // generate the React markup for the current route
       let markup;
+      console.log("-----------------------------------------\n");
+      console.log(renderProps);
+      console.log("-----------------------------------------\n");
       if (renderProps) {
+        console.log("Output from if\n");
         // if the current route matched we have renderProps
-        markup = renderToString(<RouterContext {...renderProps}/>);
+        markup = renderToString(<RouterContext {...renderProps} />);
       } else {
         // otherwise we can render a 404 page
-        markup = renderToString(<NotFoundPage/>);
+        markup = renderToString(<NotFoundPage />);
+        console.log("404 Print !!!!!\n")
         res.status(404);
       }
 
