@@ -18,6 +18,8 @@ app.set('views', path.join(__dirname, 'views'));
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
 
+
+
 // universal routing and rendering
 app.get('*', (req, res) => {
   match(

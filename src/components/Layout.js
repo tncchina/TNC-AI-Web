@@ -19,7 +19,7 @@ export default class Layout extends React.Component {
           </p>
 
           <p>
-            Do you want to know more about Node.js and Universal JavaScript? <strong>Checkout <a href="https://nodejsdesignpatterns.com">Node.js Design Patterns</a></strong>.
+            THis is layout changes. you want to know more about Node.js and Universal JavaScript? <strong>Checkout <a href="https://nodejsdesignpatterns.com">Node.js Design Patterns</a></strong>.
           </p>
 
           <p>
