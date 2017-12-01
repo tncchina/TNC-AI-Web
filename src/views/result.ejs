@@ -8,11 +8,17 @@
   </head>
   <body>
     <div>
-      <% if (locals.imgname) { %>
-        <img class='photocss' src=img/<%- imgname -%>>
-        <h2>Result:</h2>
-         animal category <%- category -%>
-      <% } %>
+      <% if (locals.imgname) 
+       { %>
+          <img class='tnc-photo' src=img/<%- imgname -%>>
+          <div  class="tnc-result-table">
+            <h2 class='tnc-category-text'>Result:</h2>
+            <div class="tnc-category-value">
+             <p>Animal Category: <p> <%- category -%></p> 95%</p>
+          </div>
+         </div>
+       <% } 
+      %>
     </div>
     <div id="main"><%- markup -%></div>
     <script src="/js/bundle.js"></script>

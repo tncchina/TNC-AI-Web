@@ -245,9 +245,26 @@ nav.athletes-menu a.active {
   text-decoration: underline;
 }
 
-.photocss{
+.tnc-photo{
   display: block;
   margin: 0 auto;
   max-width: 500px;
   width: 400%;
+}
+
+.tnc-result-table{
+  display: block;
+  margin: 0 auto;
+}
+
+.tnc-category-text{
+    text-align: center;
+    border: 3px solid green;
+    font-size: 12;
+}
+
+.tnc-category-value{
+  text-align: center;
+  font-size: 12;
+  font: 12;
 }
