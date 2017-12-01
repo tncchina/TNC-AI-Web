@@ -40,10 +40,9 @@ app.post('/upload', function (req, res) {
     sampleFile.mv('./src/static/img/' + sampleFile.name, function (err) {
 
         if (err)
-
             return res.status(500).send(err);
         let markup = renderToString(<DashboardPage/>);
-        res.render('result', { markup , imgname:sampleFile.name });
+        res.render('result', { markup , imgname:sampleFile.name, category: sampleFile.name.split(".")[0]});
         //res.send('File uploaded!');
 
     });

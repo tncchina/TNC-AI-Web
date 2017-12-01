@@ -7,13 +7,11 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-    <h2>Result:</h2>
     <div>
       <% if (locals.imgname) { %>
-
-       imgname value is <%- imgname -%>
-      <img class='photocss' src=img/<%- imgname -%>>
-
+        <img class='photocss' src=img/<%- imgname -%>>
+        <h2>Result:</h2>
+         animal category <%- category -%>
       <% } %>
     </div>
     <div id="main"><%- markup -%></div>
