@@ -8,7 +8,7 @@ export default class Layout extends React.Component {
     return (
       <div className="app-container">
         <header>
-          <Link to="/">
+          <Link to="https://www.nature.org/ourinitiatives/regions/asiaandthepacific/china/index.htm">
             <img className="logo" src="/img/logo-tnc.jpg"/>
           </Link>
         </header>

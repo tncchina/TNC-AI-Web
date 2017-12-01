@@ -26,8 +26,8 @@ header {
 header .logo {
   display: block;
   margin: 0 auto;
-  max-width: 400px;
-  width: 100%;
+  max-width: 1000px;
+  width: 400%;
 }
 
 footer {
@@ -243,4 +243,11 @@ nav.athletes-menu a.active {
 
 #abar a:hover {
   text-decoration: underline;
+}
+
+.photocss{
+  display: block;
+  margin: 0 auto;
+  max-width: 500px;
+  width: 400%;
 }

@@ -8,12 +8,14 @@
   </head>
   <body>
     <h2>Result:</h2>
-    <% if (locals.imgname) { %>
+    <div>
+      <% if (locals.imgname) { %>
 
-     imgname value is <%- imgname -%>
-    <img src=img/<%- imgname -%>>
+       imgname value is <%- imgname -%>
+      <img class='photocss' src=img/<%- imgname -%>>
 
-    <% } %>
+      <% } %>
+    </div>
     <div id="main"><%- markup -%></div>
     <script src="/js/bundle.js"></script>
   </body>
