@@ -8,6 +8,7 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from './routes';
 import NotFoundPage from './components/NotFoundPage';
+import DashboardPage from './components/ResultDashboard';
 
 
 
@@ -42,9 +43,9 @@ app.post('/upload', function (req, res) {
         if (err)
 
             return res.status(500).send(err);
-
-        //res.render('upload', { title: sampleFile.name });
-        res.send('File uploaded!');
+        let markup = renderToString(<DashboardPage/>);
+        res.render('index', { markup });
+        //res.send('File uploaded!');
 
     });
 
