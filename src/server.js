@@ -9,14 +9,47 @@ import { match, RouterContext } from 'react-router';
 import routes from './routes';
 import NotFoundPage from './components/NotFoundPage';
 
+
+
 // initialize the server and configure support for ejs templates
 const app = new Express();
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
 const server = new Server(app);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // define the folder that will be used for static assets
 app.use(Express.static(path.join(__dirname, 'static')));
+
+// use npm i express-fileupload
+app.post('/upload', function (req, res) {
+
+    if (!req.files)
+        return res.status(400).send('No files were uploaded.');
+
+
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+
+    let sampleFile = req.files.sampleFile;
+
+
+
+    // Use the mv() method to place the file somewhere on your server
+
+    sampleFile.mv('./photos/' + sampleFile.name, function (err) {
+
+        if (err)
+
+            return res.status(500).send(err);
+
+        //res.render('upload', { title: sampleFile.name });
+        res.send('File uploaded!');
+
+    });
+
+});
+
 
 // universal routing and rendering
 app.get('*', (req, res) => {

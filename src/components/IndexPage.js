@@ -7,11 +7,17 @@ import athletes from '../data/athletes';
 export default class IndexPage extends React.Component {
   render() {
     return (
-      <div className="home">
-        <div className="athletes-selector">
-          {athletes.map(athleteData => <AthletePreview key={athleteData.id} {...athleteData} />)}
-        </div>
-      </div>
+    	<div onClick={this.function1}>
+    	<form ref='uploadForm' id='uploadForm' action='/upload' method='post' encType='multipart/form-data'>
+		    Select image to upload:
+		    <input type="file" name='sampleFile'/>
+		    <input type="submit" value='Upload!' name="submit" />
+		</form>
+		</div>
     );
+  }
+
+  function1() {
+  	consol.log("ddd");
   }
 }
