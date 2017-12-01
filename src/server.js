@@ -43,7 +43,7 @@ app.post('/upload', function (req, res) {
 
             return res.status(500).send(err);
         let markup = renderToString(<DashboardPage/>);
-        res.render('result', { markup , key:sampleFile.name });
+        res.render('result', { markup , imgname:sampleFile.name });
         //res.send('File uploaded!');
 
     });

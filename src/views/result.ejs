@@ -8,10 +8,10 @@
   </head>
   <body>
     <h2>Result:</h2>
-    <% if (locals.key) { %>
+    <% if (locals.imgname) { %>
 
-     Key value is <%- key -%>
-    <img src=img/cat.jpg>
+     imgname value is <%- imgname -%>
+    <img src=img/<%- imgname -%>>
 
     <% } %>
     <div id="main"><%- markup -%></div>
