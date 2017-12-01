@@ -11,7 +11,6 @@ import NotFoundPage from './components/NotFoundPage';
 import DashboardPage from './components/ResultDashboard';
 
 
-
 // initialize the server and configure support for ejs templates
 const app = new Express();
 const fileUpload = require('express-fileupload');
@@ -38,13 +37,13 @@ app.post('/upload', function (req, res) {
 
     // Use the mv() method to place the file somewhere on your server
 
-    sampleFile.mv('./photos/' + sampleFile.name, function (err) {
+    sampleFile.mv('./src/static/img/' + sampleFile.name, function (err) {
 
         if (err)
 
             return res.status(500).send(err);
         let markup = renderToString(<DashboardPage/>);
-        res.render('index', { markup });
+        res.render('result', { markup , key:sampleFile.name });
         //res.send('File uploaded!');
 
     });
