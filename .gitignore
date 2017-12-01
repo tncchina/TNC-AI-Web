@@ -38,3 +38,7 @@ jspm_packages
 
 # Babel cache directory
 babel_cache
+
+# photos
+*.png
+*.jpg
