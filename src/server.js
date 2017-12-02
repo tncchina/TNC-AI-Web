@@ -14,6 +14,9 @@ import DashboardPage from './components/ResultDashboard';
 // initialize the server and configure support for ejs templates
 const app = new Express();
 const fileUpload = require('express-fileupload');
+
+var azure = require('azure-storage');
+
 app.use(fileUpload());
 const server = new Server(app);
 app.set('view engine', 'ejs');
@@ -35,15 +38,43 @@ app.post('/upload', function (req, res) {
 
 
 
+    var blobSvc = azure.createBlobService();
+
+    var filePath = './src/static/img/' + sampleFile.name;
+
     // Use the mv() method to place the file somewhere on your server
 
-    sampleFile.mv('./src/static/img/' + sampleFile.name, function (err) {
+    sampleFile.mv(filePath, function (err) {
 
         if (err)
             return res.status(500).send(err);
         let markup = renderToString(<DashboardPage/>);
         res.render('result', { markup , imgname:sampleFile.name, category: sampleFile.name.split(".")[0]});
-        //res.send('File uploaded!');
+        
+        blobSvc.createContainerIfNotExists('mycontainer', { publicAccessLevel: 'blob' }, function (error, result, response) {
+
+            if (error) {
+              console.log("Container created on AzureBlob")
+            }
+
+        });
+
+
+        blobSvc.createBlockBlobFromLocalFile('mycontainer', sampleFile.name, filePath, function (error, result, response) {
+
+            if (!error) {
+
+                // file uploaded
+
+                console.log("File uploaded to azure");
+
+            } else {
+
+                Console.log("Failed to upload to azure");
+
+            }
+
+        });
 
     });
 
