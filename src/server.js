@@ -16,6 +16,7 @@ const app = new Express();
 const fileUpload = require('express-fileupload');
 
 var azure = require('azure-storage');
+var request = require('request');
 
 app.use(fileUpload());
 const server = new Server(app);
@@ -36,8 +37,6 @@ app.post('/upload', function (req, res) {
 
     let sampleFile = req.files.sampleFile;
 
-
-
     var blobSvc = azure.createBlobService();
 
     var filePath = './src/static/img/' + sampleFile.name;
@@ -48,33 +47,57 @@ app.post('/upload', function (req, res) {
 
         if (err)
             return res.status(500).send(err);
-        let markup = renderToString(<DashboardPage/>);
-        res.render('result', { markup , imgname:sampleFile.name, category: sampleFile.name.split(".")[0]});
         
         blobSvc.createContainerIfNotExists('mycontainer', { publicAccessLevel: 'blob' }, function (error, result, response) {
-
             if (error) {
               console.log("Container created on AzureBlob")
             }
-
         });
 
-
+        var airesult='';
         blobSvc.createBlockBlobFromLocalFile('mycontainer', sampleFile.name, filePath, function (error, result, response) {
 
             if (!error) {
 
                 // file uploaded
-
                 console.log("File uploaded to azure");
+                var headers ={
+                  "Prediction-Key" :"14311bb72e51406a85c43f351a91890b",
+                  "Content-Type" :"application/x-www-form-urlencoded"
+                }
+
+                var photoUrl = 'https://qqq.blob.core.windows.net/mycontainer/' + sampleFile.name;
+                var options = {
+                  url : 'https://southcentralus.api.cognitive.microsoft.com/customvision/v1.0/Prediction/124a8097-fce4-4b00-9b4e-8a89c2d32d63/url?iterationId=152a2f03-5840-46b4-acfe-987a8342b47e',
+                  method : 'POST',
+                  headers: headers,
+                  form: {Url: photoUrl}
+                }
+
+                console.log('photoUrl: ' + photoUrl);
+
+                request(options, function(err, ress, body){
+                  console.log('Requesting:');
+                  if (err)
+                    console.log('Error, mate');
+                  else
+                  { 
+                    airesult = body;
+                    console.log('Body: \n' + body);
+
+                    let markup = renderToString(<DashboardPage/>);
+                    res.render('result', { markup , imgname:sampleFile.name, category: airesult});
+                  }
+                })
 
             } else {
-
                 Console.log("Failed to upload to azure");
-
+                        let markup = renderToString(<DashboardPage/>);
+                    res.render('result', { markup , imgname:sampleFile.name, category: airesult});
             }
 
         });
+
 
     });
 

@@ -26,9 +26,11 @@
     "ejs": "^2.5.1",
     "express": "^4.14.0",
     "express-fileupload": "^0.3.0",
+    "jquery": "^3.2.1",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-router": "^2.6.1"
+    "react-router": "^2.6.1",
+    "request": "^2.83.0"
   },
   "devDependencies": {
     "http-server": "^0.9.0",
