@@ -7,11 +7,13 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-     this.state = { pictures: [] };
+     this.state = { pictures: [], url:"" };
      this.onDrop = this.onDrop.bind(this);
+     //this.onResult = this.onResult.bind(this);
   }
 
-  onDrop(pictures) {
+  onDrop = (pictures) => {
+    
       var picture = pictures[0]
       this.setState({
           pictures: this.state.pictures.concat(picture),
@@ -26,29 +28,33 @@ class App extends Component {
           'Content-Type': 'multipart/form-data'
       }),
         body: formData
-      }).then(function(response){
+      }).then((response) => {
         return response.json();
     })
-    .then(function(json){
+    .then((json) => {
         console.log("Name: " + json['PhotoName']);
         console.log("PhotoUrl: " + json['PhotoUrl']);
+        this.setState({url: json['PhotoUrl']});
     }).catch(err => console.log(err));
   }
 
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Welcome to React</h1>
+          </header>
         <ImageUploader
-        withIcon={true}
-        buttonText='Choose images'
-        onChange={this.onDrop}
-        imgExtension={['.jpg', '.gif', '.png', '.gif']}
-        maxFileSize={5242880}
-    />
+          withIcon={true}
+          withPreview={true}
+          buttonText='Choose images'
+          onChange={this.onDrop}
+          imgExtension={['.jpg', '.gif', '.png', '.gif']}
+          maxFileSize={5242880}
+        />
+        <img src={this.state.url} alt='photoUrl'/>
       </div>
     );
   }
