@@ -21,8 +21,18 @@ class App extends Component {
       formData.append(picture.name, picture);
       fetch('http://localhost:49492/api/storage/photoUpload', {
         method: 'POST',
+        header: new Headers({
+          'Access-Control-Allow-Origin':'*',
+          'Content-Type': 'multipart/form-data'
+      }),
         body: formData
-      })
+      }).then(function(response){
+        return response.json();
+    })
+    .then(function(json){
+        console.log("Name: " + json['PhotoName']);
+        console.log("PhotoUrl: " + json['PhotoUrl']);
+    }).catch(err => console.log(err));
   }
 
   render() {
