@@ -7,7 +7,7 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-     this.state = { pictures: [], url:"" };
+     this.state = { pictures: [], url:"", prediction:"" };
      this.onDrop = this.onDrop.bind(this);
      //this.onResult = this.onResult.bind(this);
   }
@@ -34,7 +34,8 @@ class App extends Component {
     .then((json) => {
         console.log("Name: " + json['PhotoName']);
         console.log("PhotoUrl: " + json['PhotoUrl']);
-        this.setState({url: json['PhotoUrl']});
+        console.log("Prediction: " + json['Prediction']);
+        this.setState({url: json['PhotoUrl'],prediction: json['Prediction']});
     }).catch(err => console.log(err));
   }
 
@@ -54,6 +55,7 @@ class App extends Component {
           imgExtension={['.jpg', '.gif', '.png', '.gif']}
           maxFileSize={5242880}
         />
+        <b> {this.state.prediction} </b>
         <img src={this.state.url} alt='photoUrl'/>
       </div>
     );
