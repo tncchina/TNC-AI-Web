@@ -22,7 +22,6 @@ class App extends Component {
       var formData = new FormData();
       formData.append(picture.name, picture);
       fetch('https://tnc-ai-web-api.azurewebsites.net/api/storage/photoUpload', {
-        mode: 'no-cors',
         method: 'POST',
         header: new Headers({
           'Content-Type': 'multipart/form-data'
