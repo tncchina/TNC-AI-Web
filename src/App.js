@@ -23,8 +23,10 @@ class App extends Component {
       formData.append(picture.name, picture);
       fetch('https://tnc-ai-web-api.azurewebsites.net/api/storage/photoUpload', {
         method: 'POST',
+        mode: 'cors',
         header: new Headers({
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          'Access-Control-Allow-Origin':'*'
       }),
         body: formData
       }).then((response) => {
@@ -51,11 +53,13 @@ class App extends Component {
           withPreview={true}
           buttonText='Choose images'
           onChange={this.onDrop}
-          imgExtension={['.jpg', '.gif', '.png', '.gif']}
+          imgExtension={['.jpg', '.JPG', '.gif', '.png', '.PNG', '.gif']}
           maxFileSize={5242880}
         />
-        <b> {this.state.prediction} </b>
-        <img src={this.state.url} alt='photoUrl'/>
+        <figure>
+          <figcaption> {this.state.prediction} </figcaption>
+          <img src={this.state.url} alt='photoUrl'/>
+        </figure>
       </div>
     );
   }
