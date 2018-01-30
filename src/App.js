@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ImageUploader from 'react-images-upload';
-import logo from './logo.svg';
+import logo from './logo-nature-notagline.png';
 import './App.css';
 
 class App extends Component {
@@ -21,11 +21,12 @@ class App extends Component {
 
       var formData = new FormData();
       formData.append(picture.name, picture);
-      fetch('http://localhost:49492/api/storage/photoUpload', {
+      fetch('https://tnc-ai-web-api.azurewebsites.net/api/storage/photoUpload', {
         method: 'POST',
+        mode: 'cors',
         header: new Headers({
-          'Access-Control-Allow-Origin':'*',
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          'Access-Control-Allow-Origin':'*'
       }),
         body: formData
       }).then((response) => {
@@ -44,19 +45,21 @@ class App extends Component {
     return (
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
+            <img src={logo} alt="logo" />
+            <h1 className="App-title">Welcome to TNC-AI</h1>
           </header>
         <ImageUploader
           withIcon={true}
           withPreview={true}
           buttonText='Choose images'
           onChange={this.onDrop}
-          imgExtension={['.jpg', '.gif', '.png', '.gif']}
+          imgExtension={['.jpg', '.JPG', '.gif', '.png', '.PNG', '.gif']}
           maxFileSize={5242880}
         />
-        <b> {this.state.prediction} </b>
-        <img src={this.state.url} alt='photoUrl'/>
+        <figure>
+          <figcaption> {this.state.prediction} </figcaption>
+          <img src={this.state.url} alt='photoUrl'/>
+        </figure>
       </div>
     );
   }
